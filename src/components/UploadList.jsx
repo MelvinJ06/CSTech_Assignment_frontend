@@ -57,7 +57,6 @@ export default function UploadList() {
           distribute it among 5 agents.
         </p>
 
-        {/* Form */}
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div className="flex flex-col items-center justify-center border-2 border-dashed border-indigo-300 rounded-xl py-8 bg-indigo-50/30 hover:bg-indigo-100/50 transition-all duration-300 cursor-pointer">
             <input
