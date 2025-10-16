@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../api/api";
+import { AuthContext } from "../context/AuthContext";
 
-export default function Login() {
+export default function LoginPage() {
+  const { setToken } = useContext(AuthContext);
   const [form, setForm] = useState({ email: "", password: "" });
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
@@ -14,9 +16,9 @@ export default function Login() {
     e.preventDefault();
     try {
       const res = await API.post("/auth/login", form);
-      localStorage.setItem("token", res.data.token);
+      setToken(res.data.token); 
       setMsg("✅ Login successful!");
-      setTimeout(() => navigate("/dashboard"), 1000);
+      navigate("/dashboard"); 
     } catch (err) {
       setMsg(err.response?.data?.message || "❌ Login failed");
     }
